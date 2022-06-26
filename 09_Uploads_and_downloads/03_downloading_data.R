@@ -4,7 +4,7 @@
 
 # https://mastering-shiny.org/action-transfer.html
 # Script 3 - Downloading files
-# Objective: 
+# Objective: download a dataset for a list of datasets
 
 library(shiny)
 
