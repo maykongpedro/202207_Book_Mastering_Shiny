@@ -1,0 +1,13 @@
+---
+title: "Dynamic report"
+output: html_document
+params:
+    n: 1
+---
+
+Um gráfico de `r params$n` números aleatórios.
+
+```{r}
+plot(rnorm(params$n), rnorm(params$n))
+```
+
