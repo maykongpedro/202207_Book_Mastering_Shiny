@@ -3,13 +3,11 @@
 # 9. Uploads and downloads ----------------------------------
 
 # https://mastering-shiny.org/action-transfer.html
-# Script 5 - Downloading reports - update path and separate session for render()
+# Script 6 - Downloading reports - update path and separate session for render()
 # Objective: download a report that summarises the result of a interactive exploration
 #            in a shiny app - using a temporary path
 
 library(shiny)
-
-
 
 # Report function ---------------------------------------------------------
 
