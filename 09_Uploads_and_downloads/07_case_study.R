@@ -188,7 +188,23 @@ server <- function(input, output, session) {
 
   
   # Download --------------------------------------------------------------
-
+  output$download <- downloadHandler(
+    
+    filename = function(){
+      
+      file_path <- tools::file_path_sans_ext(input$file$name)
+      paste0(file_path,".tsv")
+    },
+    
+    content = function(file){
+      
+      vroom::vroom_write(
+        x = tidied_data(), 
+        file = file
+        )
+      
+    }
+  )
 
   
 }
