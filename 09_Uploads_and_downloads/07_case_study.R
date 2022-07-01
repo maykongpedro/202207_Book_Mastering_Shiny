@@ -124,10 +124,13 @@ server <- function(input, output, session) {
   # Upload ----------------------------------------------------------------
   raw_data <- reactive({
     
+    # require input
     req(input$file)
     
+    # delimitador of the file
     delim <- if(input$delim == "") NULL else input$delim
     
+    # read file
     vroom::vroom(
       file = input$file$datapath,
       delim = delim,
@@ -136,6 +139,7 @@ server <- function(input, output, session) {
     
   })
   
+  # table preview of the data
   output$preview1 <- renderTable(
     expr = head(
       x = raw(),
@@ -145,7 +149,42 @@ server <- function(input, output, session) {
 
 
   # Clean -----------------------------------------------------------------
-
+  
+  tidied_data <- reactive({
+    
+    # get raw data
+    out <- raw_data()
+    
+    # rename columns to snake case
+    if (input$snake) {
+      names(out) <- janitor::make_clean_names(names(out))
+    }
+    
+    # remove empty columns
+    if (input$empty) {
+      out <- janitor::remove_empty(
+        dat = out,
+        which = "cols"
+      )
+    }
+    
+    # remove constant columns
+    if (input$constant) {
+      out <- janitor::remove_constant(out)
+    }
+    
+    # retorn transformed data in out
+    out
+    
+  })
+  
+  # table preview of tidied data
+  output$preview2 <- renderTable(
+    expr = head(
+      x = tidied_data(),
+      n = input$rows
+    )
+  )
 
   
   # Download --------------------------------------------------------------
