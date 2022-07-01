@@ -118,11 +118,71 @@ ui <- fluidPage(
 
 # Server ------------------------------------------------------------------
 
-
-
-
 server <- function(input, output, session) {
+  
+
+  # Upload ----------------------------------------------------------------
+  raw_data <- reactive({
+    
+    req(input$file)
+    
+    delim <- if(input$delim == "") NULL else input$delim
+    
+    vroom::vroom(
+      file = input$file$datapath,
+      delim = delim,
+      skip = input$skip
+    )
+    
+  })
+  
+  output$preview1 <- renderTable(
+    expr = head(
+      x = raw(),
+      n = input$rows
+      )
+  )
+
+
+  # Clean -----------------------------------------------------------------
+
+
+  
+  # Download --------------------------------------------------------------
+
+
   
 }
 
 shinyApp(ui, server)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
