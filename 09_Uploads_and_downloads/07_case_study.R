@@ -20,6 +20,7 @@ library(shiny)
 # 1.Uploading and parsing the file ----------------------------------------
 
 ui_upload <- sidebarLayout(
+  
     sidebarPanel = sidebarPanel(
         
         fileInput(
@@ -61,16 +62,58 @@ ui_upload <- sidebarLayout(
 
 # 2.Cleaning the file -----------------------------------------------------
 
-
+ui_clean <- sidebarLayout(
+  
+  sidebarPanel = sidebarPanel(
+    
+    checkboxInput(
+      inputId = "snake",
+      label = "Rename columns to snake case?"
+    ),
+        
+    checkboxInput(
+      inputId = "constant",
+      label = "Remove constant columns?"
+    ),
+        
+    checkboxInput(
+      inputId = "empty",
+      label = "Remove empty cols?"
+    )
+    
+  ),
+  
+  mainPanel = mainPanel(
+    h3("Cleaner data"),
+    tableOutput("preview2")
+  )
+)
 
 
 # 3. Downloading the file -------------------------------------------------
 
-
+ui_download <- fluidRow(
+  
+  column(
+    
+    width = 12,
+    
+    downloadButton(
+      outputId = "download",
+      class = "btn-block"
+    )
+    
+  )
+)
 
 
 # Ui ----------------------------------------------------------------------
 
+ui <- fluidPage(
+  ui_upload,
+  ui_clean,
+  ui_download
+)
 
 
 # Server ------------------------------------------------------------------
