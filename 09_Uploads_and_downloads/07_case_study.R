@@ -11,11 +11,12 @@
 
 library(shiny)
 
-
 #To make it easier to understand how to use the app, we used sidebarLayout() 
 # to divide the app into three main steps:
 
-
+# 1.Uploading and parsing the file
+# 2.Cleaning the file
+# 3. Downloading the file
 
 # 1.Uploading and parsing the file ----------------------------------------
 
@@ -120,14 +121,13 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   
-
   # Upload ----------------------------------------------------------------
   raw_data <- reactive({
     
     # require input
     req(input$file)
     
-    # delimitador of the file
+    # delimitator of the file
     delim <- if(input$delim == "") NULL else input$delim
     
     # read file
@@ -146,7 +146,6 @@ server <- function(input, output, session) {
       n = input$rows
       )
   )
-
 
   # Clean -----------------------------------------------------------------
   
@@ -173,7 +172,7 @@ server <- function(input, output, session) {
       out <- janitor::remove_constant(out)
     }
     
-    # retorn transformed data in out
+    # return transformed data in out
     out
     
   })
@@ -186,7 +185,6 @@ server <- function(input, output, session) {
     )
   )
 
-  
   # Download --------------------------------------------------------------
   output$download <- downloadHandler(
     
@@ -212,34 +210,3 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
