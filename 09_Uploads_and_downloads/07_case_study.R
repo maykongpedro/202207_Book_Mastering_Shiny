@@ -142,7 +142,7 @@ server <- function(input, output, session) {
   # table preview of the data
   output$preview1 <- renderTable(
     expr = head(
-      x = raw(),
+      x = raw_data(),
       n = input$rows
       )
   )
@@ -192,12 +192,14 @@ server <- function(input, output, session) {
     
     filename = function(){
       
+      # get complete name of the file without extension
       file_path <- tools::file_path_sans_ext(input$file$name)
       paste0(file_path,".tsv")
     },
     
     content = function(file){
       
+      # export tidied data
       vroom::vroom_write(
         x = tidied_data(), 
         file = file
