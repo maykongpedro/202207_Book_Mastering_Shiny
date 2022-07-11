@@ -12,29 +12,50 @@ library(shiny)
 
 ui <- fluidPage(
     
-  numericInput(
-      inputId = "min",
-      label = "Mínimo",
-      value = 0
-  ),
-  
-  numericInput(
+    # min number to slider
+    numericInput(
+        inputId = "min",
+        label = "Mínimo",
+        value = 0
+    ),
+    
+    # max number to slider
+    numericInput(
       inputId = "max",
       label = "Máximo",
       value = 3
-  ),
-  
-  sliderInput(
-      inputId = "n",
-      label = "n",
-      min = 0,
-      max = 3,
-      value = 1
-  )
-  
+     ),
+    
+    # slider to see the differences
+    sliderInput(
+        inputId = "n",
+        label = "n",
+        min = 0,
+        max = 3,
+        value = 1
+    )
+    
 )
 
 server <- function(input, output, session) {
+    
+    # update min
+    observeEvent(input$min, {
+        updateSliderInput(
+            inputId = "n",
+            min = input$min
+        )
+    }
+    )
+    
+    # update max
+    observeEvent(input$max, {
+        updateSliderInput(
+            inputId = "n",
+            max = input$max
+        )
+    }
+    )
   
 }
 
