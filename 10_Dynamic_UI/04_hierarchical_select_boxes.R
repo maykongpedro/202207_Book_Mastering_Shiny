@@ -63,6 +63,57 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   
+  
+  # create a reactive base with the territory filtered
+  territory_data <- reactive({
+    sales |> dplyr::filter(territory == input$territory)
+  })
+  
+  # first update - using territory filtered data to update customer name
+  observeEvent(territory_data(), {
+    
+    new_choices <- unique(territory_data()$customername)
+    
+    updateSelectInput(
+      inputId = "customername",
+      choices = new_choices
+    )
+    
+    
+  })
 }
 
 shinyApp(ui, server)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
