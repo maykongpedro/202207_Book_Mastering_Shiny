@@ -11,12 +11,12 @@
 
 library(shiny)
 
-#To make it easier to understand how to use the app, we used sidebarLayout() 
+# To make it easier to understand how to use the app, we used sidebarLayout() 
 # to divide the app into three main steps:
 
 # 1.Uploading and parsing the file
 # 2.Cleaning the file
-# 3. Downloading the file
+# 3.Downloading the file
 
 # 1.Uploading and parsing the file ----------------------------------------
 
