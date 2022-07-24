@@ -16,21 +16,44 @@ ui <- shinymaterial::material_page(
                 initial_value = 5,
                 # color = "#2e7d32"
             )
-        )
+        ),
+        
+        shinymaterial::material_column(
+            width = 3,
+            shinymaterial::material_checkbox(
+                input_id = "check",
+                label = "Checkbox",
+                initial_value = FALSE
+            )
+        ),
+        
+        
+        shinymaterial::material_column(
+            width = 3,
+            shinymaterial::material_card(
+                title = "Example",
+                plotOutput(outputId = "plot_example")
+            )
+        ),
         
     ),
     
     shinymaterial::material_row(
         shinymaterial::material_column(
             width = 3,
-            shinymaterial::material_radio_button(
-                input_id = "radio",
-                label = "Escolha entre duas opções",
-                choices = c(
-                    "Claro" = "claro",
-                    "Escuro" = "escuro"
+            
+            shinymaterial::material_card(
+                title = "Radio buttons",
+                shinymaterial::material_radio_button(
+                    input_id = "radio",
+                    label = "Escolha entre duas opções",
+                    choices = c(
+                        "Claro" = "claro",
+                        "Escuro" = "escuro"
+                    )
                 )
             )
+
         ),
         
         shinymaterial::material_column(
@@ -41,6 +64,28 @@ ui <- shinymaterial::material_page(
                 on_label = "Sim",
                 initial_value = TRUE,
                 # color = "#2e7d32"
+            )
+        ),
+        
+        shinymaterial::material_column(
+            width = 3,
+            shinymaterial::material_button(
+                input_id = "example_button",
+                label = "BUTTON"
+            )
+        ),
+        
+        shinymaterial::material_column(
+            width = 3,
+            shinymaterial::material_dropdown(
+                input_id = "example_dropdown",
+                label = "Dropdown",
+                choices = c(
+                    "Chicken" = "c",
+                    "Steak" = "s",
+                    "Fish" = "f"
+                ),
+                selected = "s"
             )
         )
     )
