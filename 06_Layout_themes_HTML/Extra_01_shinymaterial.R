@@ -1,7 +1,7 @@
 
 # https://ericrayanderson.github.io/shinymaterial/
-# Script Extra 01 - Testing the shinymaterial layout and inputs
-# Objective: 
+# Script Extra 01 - Shinymaterial
+# Objective: Testing the shinymaterial layout and inputs
 
 library(shiny)
 
