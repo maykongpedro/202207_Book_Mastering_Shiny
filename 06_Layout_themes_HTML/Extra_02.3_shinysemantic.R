@@ -10,10 +10,36 @@ ui <- dashboardPage(
     )),
     dashboardBody(
         fluidRow(
-            box(plotOutput("plot1", height = 250)),
+            box(
+                title = "Gráfico",
+                width = 6,
+                plotOutput("plot1", height = 250)),
             box(
                 title = "Controls",
+                width = 3,
                 sliderInput("slider", "Number of observations:", 1, 100, 50)
+            ),
+            box(
+                title = "Input normal",
+                width = 3,
+                selectInput(inputId = "selinput", 
+                            label = "Opções:", 
+                            choices = c(
+                                "A", "B", "C"
+                            ))
+            )
+            
+        ),
+        fluidRow(
+            box(
+                title = "Radio buttons",
+                width = 5,
+                # radioButtons(
+                #     inputId = "radio",
+                #     label = "Escolha um:",
+                #     choices = c("op1", "op2"),
+                #     selected = "op1"
+                # )
             )
         )
     ),
